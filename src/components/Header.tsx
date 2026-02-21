@@ -1,8 +1,11 @@
 "use client";
 
 import { ShoppingCart, Menu, Search } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
+    const { cartCount, setIsCartOpen } = useCart();
+
     return (
         <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-orange-100">
             <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
@@ -22,11 +25,16 @@ export default function Header() {
                     <button className="p-2 text-[#3d2b1f] hover:bg-orange-50 rounded-full transition-colors">
                         <Search size={20} />
                     </button>
-                    <button className="p-2 text-[#3d2b1f] hover:bg-orange-50 rounded-full transition-colors relative">
+                    <button
+                        onClick={() => setIsCartOpen(true)}
+                        className="p-2 text-[#3d2b1f] hover:bg-orange-50 rounded-full transition-colors relative"
+                    >
                         <ShoppingCart size={20} />
-                        <span className="absolute top-0 right-0 h-4 w-4 bg-orange-600 text-white text-[10px] flex items-center justify-center rounded-full font-bold">
-                            0
-                        </span>
+                        {cartCount > 0 && (
+                            <span className="absolute top-0 right-0 h-4 w-4 bg-orange-600 text-white text-[10px] flex items-center justify-center rounded-full font-bold">
+                                {cartCount}
+                            </span>
+                        )}
                     </button>
                     <button className="md:hidden p-2 text-[#3d2b1f] hover:bg-orange-50 rounded-full transition-colors">
                         <Menu size={20} />

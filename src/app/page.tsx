@@ -3,6 +3,9 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Header from "@/components/Header";
+import ProductCard from "@/components/ProductCard";
+import AnimatedPava from "@/components/AnimatedPava";
+import AnimatedCategoryIcon from "@/components/AnimatedCategoryIcon";
 import { ArrowRight, Star, ShieldCheck, Truck } from "lucide-react";
 
 async function getProducts() {
@@ -31,6 +34,10 @@ export default async function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-100/40 via-transparent to-transparent -z-10"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
+          <div className="mb-8">
+            <AnimatedPava />
+          </div>
+
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100/50 border border-orange-200 text-orange-900 text-xs font-bold tracking-wider uppercase mb-8 shadow-sm">
             <Star size={12} className="fill-orange-600 text-orange-600" />
             Artesanía Argentina de Exportación
@@ -101,33 +108,7 @@ export default async function Home() {
         {products.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {products.map((product: any) => (
-              <Link href={`/product/${product.slug}`} key={product._id} className="group bg-white rounded-3xl p-4 shadow-sm border border-orange-100 hover:shadow-xl transition-all hover:-translate-y-2 block">
-                <div className="relative aspect-square mb-6 overflow-hidden rounded-2xl bg-gray-50">
-                  {product.image && (
-                    <Image
-                      src={urlFor(product.image).url()}
-                      alt={product.name}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                  )}
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-orange-800 shadow-sm uppercase tracking-wider">
-                    {product.category}
-                  </div>
-                </div>
-                <div className="px-2 pb-2">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-orange-950 transition-colors uppercase tracking-tight">{product.name}</h3>
-                  <p className="text-gray-500 text-sm mb-4 line-clamp-2 md:h-10">{product.description}</p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className="text-2xl font-black text-[#3d2b1f]">
-                      ${new Intl.NumberFormat('es-AR').format(product.price)}
-                    </span>
-                    <button className="bg-orange-50 text-orange-900 px-4 py-2 rounded-xl font-bold text-sm hover:bg-orange-600 hover:text-white transition-all">
-                      Ver detalle
-                    </button>
-                  </div>
-                </div>
-              </Link>
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
         ) : (
@@ -148,7 +129,7 @@ export default async function Home() {
           ].map((cat, i) => (
             <div key={i} className="group relative bg-white p-10 rounded-[2.5rem] shadow-sm border border-orange-100 flex flex-col items-center transition-all hover:shadow-xl hover:border-orange-200 overflow-hidden cursor-pointer">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-[5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-              <span className="text-7xl mb-6 relative z-10 block transition-transform group-hover:-rotate-12">{cat.icon}</span>
+              <AnimatedCategoryIcon icon={cat.icon} />
               <h3 className="text-2xl font-black mb-3 relative z-10">{cat.title}</h3>
               <p className="text-gray-500 text-center relative z-10 font-medium leading-relaxed">{cat.desc}</p>
             </div>
