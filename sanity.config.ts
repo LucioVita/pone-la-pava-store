@@ -7,7 +7,7 @@ export default defineConfig({
     name: 'default',
     title: 'Pone La Pava - Admin',
 
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'yqivp1p0', // Placeholder or Env
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '5q85wxa1',
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 
     basePath: '/studio',
