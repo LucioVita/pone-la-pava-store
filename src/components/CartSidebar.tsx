@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingCart, Trash2, Plus, Minus, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
@@ -16,6 +16,47 @@ export default function CartSidebar() {
         updateQuantity,
         cartTotal
     } = useCart();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleCheckout = async () => {
+        setIsLoading(true);
+        try {
+            const items = cart.map(item => ({
+                id: item.id,
+                title: item.name,
+                quantity: item.quantity,
+                unit_price: item.price,
+            }));
+
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items }),
+            });
+
+            if (!response.ok) {
+                const textError = await response.text();
+                throw new Error(`Error en API de checkout (${response.status}): ${textError}`);
+            }
+
+            const data = await response.json();
+
+            if (data.init_point) {
+                window.location.href = data.init_point;
+            } else {
+                console.error("Error al obtener el link de pago, sin init_point en data:", data);
+                alert("Hubo un error al procesar el pago. Por favor intenta de nuevo.");
+            }
+        } catch (error) {
+            console.error('Detalles del error al procesar el checkout:', error);
+            alert("Hubo un error al conectar con el servidor. Por favor intenta de nuevo.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <AnimatePresence>
@@ -134,9 +175,13 @@ export default function CartSidebar() {
                                 <p className="text-xs text-gray-400 font-medium text-center">
                                     Envío calculado al momento del checkout
                                 </p>
-                                <button className="w-full py-4 bg-[#3d2b1f] text-white rounded-2xl font-black text-lg shadow-xl shadow-orange-900/20 hover:bg-[#5c4033] transition-all flex items-center justify-center gap-3 group">
-                                    Iniciar Compra
-                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                <button
+                                    onClick={handleCheckout}
+                                    disabled={isLoading}
+                                    className="w-full py-4 bg-[#3d2b1f] text-white rounded-2xl font-black text-lg shadow-xl shadow-orange-900/20 hover:bg-[#5c4033] transition-all flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
+                                >
+                                    {isLoading ? "Procesando..." : "Iniciar Compra"}
+                                    {!isLoading && <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />}
                                 </button>
                             </div>
                         )}

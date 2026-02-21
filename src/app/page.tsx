@@ -5,6 +5,9 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import AnimatedPava from "@/components/AnimatedPava";
+import SteamEffect from "@/components/SteamEffect";
+import GoogleReviews from "@/components/GoogleReviews";
+import MapSection from "@/components/MapSection";
 import AnimatedCategoryIcon from "@/components/AnimatedCategoryIcon";
 import { ArrowRight, Star, ShieldCheck, Truck } from "lucide-react";
 
@@ -30,33 +33,47 @@ export default async function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-100/40 via-transparent to-transparent -z-10"></div>
+      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/portada.png"
+            alt="Pone La Pava Portada"
+            fill
+            className="object-cover object-center brightness-90"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#faf9f6]"></div>
+        </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
-          <div className="mb-8">
-            <AnimatedPava />
-          </div>
+        {/* Steam Effect positioned over the mate - adjusting based on common composition */}
+        <div className="absolute top-[40%] left-[80%] -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none scale-[1.5]">
+          <SteamEffect className="w-40 h-40" />
+        </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100/50 border border-orange-200 text-orange-900 text-xs font-bold tracking-wider uppercase mb-8 shadow-sm">
-            <Star size={12} className="fill-orange-600 text-orange-600" />
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wider uppercase mb-8 shadow-sm">
+            <Star size={12} className="fill-orange-400 text-orange-400" />
             Artesanía Argentina de Exportación
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-[#3d2b1f] to-[#5c4033]">
+          <h1 className="text-6xl md:text-9xl font-black mb-4 tracking-tighter text-white drop-shadow-2xl">
             Pone La Pava
           </h1>
+          <h2 className="text-2xl md:text-4xl font-bold mb-8 tracking-tight text-orange-400 drop-shadow-xl">
+            Mates y Termos Premium en Argentina
+          </h2>
 
-          <p className="text-xl md:text-2xl text-[#5c4033]/80 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-            Elevamos el ritual del mate con piezas únicas, talladas a mano y diseñadas para durar toda la vida.
+          <p className="text-xl md:text-3xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-md">
+            Especialistas en la cultura del mate. Encontrá tu Mate Imperial, Termo Stanley o sets materos diseñados para toda la vida. Mates de calabaza, madera y algarrobo 100% artesanales.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-4 bg-[#3d2b1f] text-white rounded-full font-bold shadow-lg shadow-orange-900/20 hover:bg-[#5c4033] transition-all hover:-translate-y-1 flex items-center gap-2 group text-lg">
+            <button className="px-10 py-5 bg-orange-600 text-white rounded-full font-bold shadow-xl shadow-orange-900/40 hover:bg-orange-700 transition-all hover:-translate-y-1 flex items-center gap-2 group text-xl">
               Ver Colección
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-8 py-4 bg-white text-[#3d2b1f] border border-orange-100 rounded-full font-bold hover:bg-orange-50 transition-all text-lg shadow-sm">
+            <button className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/30 rounded-full font-bold hover:bg-white/20 transition-all text-xl shadow-lg">
               Personalizar mi Mate
             </button>
           </div>
@@ -136,6 +153,12 @@ export default async function Home() {
           ))}
         </div>
       </section>
+
+      {/* Google Reviews Section */}
+      <GoogleReviews />
+
+      {/* Map & Contact Section */}
+      <MapSection />
 
       {/* Footer */}
       <footer className="bg-[#3d2b1f] text-white py-24">

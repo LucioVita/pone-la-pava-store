@@ -10,7 +10,9 @@
     - `CartSidebar` animado con Framer Motion.
     - Botones de "Agregar al carrito" funcionales en Home y Detalles.
 4.  **Estética Premium & Animaciones:**
-    - **AnimatedPava:** SVG animado con efecto de vapor en el Hero.
+    - **Hero Cover:** Nueva imagen de portada (`portada.png`) integrada con efecto de cristal y gradientes.
+    - **Steam Effect:** SVG dinámico overlayed sobre el mate de la portada para un efecto realista y "vivo".
+    - **AnimatedPava:** (Componente previo) SVG animado con efecto de vapor.
     - **Categorías Dinámicas:** Micro-interacciones al pasar el mouse por los rubros.
     - **Framer Motion:** Animaciones de entrada (fade-in/up) en todo el catálogo.
 5.  **CMS (Sanity):** Conexión total. Los productos se cargan dinámicamente desde el panel.

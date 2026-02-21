@@ -4,6 +4,7 @@ import "./globals.css";
 import ChatWidget from "@/components/ChatWidget";
 import CartSidebar from "@/components/CartSidebar";
 import { CartProvider } from "@/context/CartContext";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/SEOJsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +17,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pone La Pava - Mates y Termos Premium",
-  description: "Tu tienda de confianza para el ritual del mate",
+  title: "Pone La Pava - Tienda de Mates y Termos | Industria Argentina",
+  description: "Descubrí la mejor selección de Mates Imperiales, Termos Stanley y Lumilagro, bombillas y accesorios. Equipá tu ritual matero con envíos a todo el país.",
+  keywords: ["mate imperial", "termo stanley", "mate de calabaza", "bombilla mate", "mate argentina", "termo lumilagro", "cómo curar un mate"],
+  openGraph: {
+    title: "Pone La Pava - Tienda de Mates y Termos",
+    description: "La tienda especialista en el ritual del mate. Mates artesanales, personalizados y termos de alta gama.",
+    url: "https://ponelapava.com.ar",
+    siteName: "Pone La Pava",
+    images: [
+      {
+        url: "/images/og-image.webp", // Generará la url a partir de NEXT_PUBLIC_APP_URL si se configura baseUrl
+        width: 1200,
+        height: 630,
+        alt: "Pone La Pava - Mates y Termos Premium",
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -30,6 +52,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <OrganizationJsonLd
+          name="Pone La Pava"
+          url="https://ponelapava.com.ar"
+          description="Tienda de confianza para el ritual del mate en Argentina."
+        />
+        <WebSiteJsonLd name="Pone La Pava" url="https://ponelapava.com.ar" />
         <CartProvider>
           {children}
           <CartSidebar />

@@ -1,0 +1,54 @@
+Para que tu tienda online de mates y termos sea competitiva en el mercado argentino de 2026, debe combinar la tradición del ritual con una infraestructura técnica de vanguardia. A continuación, detallo los requerimientos estructurales y estéticos que debes entregar a tu desarrollador:
+
+1. Arquitectura de Información y Navegación
+La estructura debe ser "plana" para que el usuario llegue a cualquier producto en un máximo de 3 clics.
+
+Menú Principal (Megamenú):
+
+Mates: Subcategorías por modelo (Imperial, Torpedo, Camionero, Térmicos, Madera).
+
+Termos: Filtrar por marca (Stanley, Lumilagro, Peabody) y material (Acero, Vidrio).
+
+Bombillas: Clasificar por tipo (Pico de Loro, Chata, Resorte) y material (Alpaca, Acero).
+
+Kits/Combos: Agrupaciones de "Set Matero Completo" o "Equipos de Mate" para aumentar el ticket promedio.
+
+Personalizados: Sección exclusiva para grabados láser y regalos empresariales.
+
+Footer (Pie de página): Debe incluir obligatoriamente el Botón de Arrepentimiento, link a Defensa del Consumidor, Data Fiscal de AFIP y métodos de envío (Andreani, Correo Argentino).
+
+2. Estética y Diseño Visual (UX/UI)
+El diseño debe seguir una tendencia Mobile-First, ya que más del 80% de las compras de este nicho se realizan desde smartphones.
+
+Estilo Visual: Minimalismo inteligente. Mucho espacio en blanco para resaltar la textura del cuero y la madera de los mates.
+
+Diseño "Bento-Box": Organizar las categorías en bloques visuales claros y atractivos en la home, similar a las interfaces modernas de aplicaciones móviles.
+
+Imágenes: Uso estricto de formato WebP para máxima velocidad de carga. Fotos 360º o videos cortos de los productos para mostrar la calidad de las costuras y virolas.
+
+Diseño Emocional: Usar una paleta de colores que conecte con la naturaleza (verdes, marrones) o con la sofisticación (negro y dorado para líneas Premium).
+
+3. Funcionalidades Clave de Producto (CRO)
+La ficha de producto es donde ocurre la conversión y debe estar optimizada para el usuario argentino:
+
+Personalizador en Tiempo Real: Un módulo donde el cliente pueda escribir su nombre o subir un logo y ver una previsualización en vivo de cómo quedaría el grabado láser en el mate o termo.
+
+Precios Dinámicos: El precio debe actualizarse automáticamente si el usuario añade personalización o elige un material premium (ej. virola de alpaca vs. acero).
+
+Social Proof: Integrar reseñas con fotos reales de clientes para generar confianza, algo crítico en productos artesanales donde "cada mate es único".
+
+Calculador de Envío y Cuotas: Mostrar claramente el beneficio de "3 o 6 cuotas sin interés" y un calculador de costo de envío por código postal antes de ir al checkout.
+
+4. Especificaciones Técnicas y SEO
+Pídele al desarrollador que priorice estos elementos para asegurar el ranking en Google:
+
+Velocidad (Core Web Vitals): Implementar compresión Brotli y un CDN (como Cloudflare) para que la página cargue en menos de 2 segundos.
+
+Datos Estructurados (Schema.org): Implementar el esquema de Product para que Google muestre el precio, stock y estrellitas de valoración directamente en los resultados de búsqueda.
+
+Filtros AJAX: Permitir que los usuarios filtren por "Color", "Material" o "Precio" sin que la página se recargue completamente, mejorando la experiencia móvil.
+
+Checkout de un solo paso: Reducir la fricción integrando Mercado Pago y opciones de "Envío Express" o "Retiro en tienda" (Local Pickup).
+
+5. Estrategia de Contenido Integrada
+La tienda debe incluir una sección de Blog o "Tips Materos" con una estructura tipo silo, enlazando artículos como "¿Cómo curar un mate de calabaza?" o "¿Cómo identificar un termo Stanley original?" directamente hacia los productos correspondientes.
