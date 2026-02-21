@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
@@ -100,7 +101,7 @@ export default async function Home() {
         {products.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {products.map((product: any) => (
-              <div key={product._id} className="group bg-white rounded-3xl p-4 shadow-sm border border-orange-100 hover:shadow-xl transition-all hover:-translate-y-2">
+              <Link href={`/product/${product.slug}`} key={product._id} className="group bg-white rounded-3xl p-4 shadow-sm border border-orange-100 hover:shadow-xl transition-all hover:-translate-y-2 block">
                 <div className="relative aspect-square mb-6 overflow-hidden rounded-2xl bg-gray-50">
                   {product.image && (
                     <Image
@@ -122,11 +123,11 @@ export default async function Home() {
                       ${new Intl.NumberFormat('es-AR').format(product.price)}
                     </span>
                     <button className="bg-orange-50 text-orange-900 px-4 py-2 rounded-xl font-bold text-sm hover:bg-orange-600 hover:text-white transition-all">
-                      Añadir
+                      Ver detalle
                     </button>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (
