@@ -63,10 +63,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                     </div>
                 </div>
                 <div className="px-2 pb-2">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-orange-950 transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-extrabold mb-2 text-[#3d2b1f] group-hover:text-orange-700 transition-colors tracking-tight">
                         {product.name}
                     </h3>
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-2 md:h-10">
+                    <p className="text-[#5c4033] font-medium text-sm mb-4 line-clamp-2 md:h-10">
                         {product.description}
                     </p>
                     <div className="flex items-center justify-between mt-auto">

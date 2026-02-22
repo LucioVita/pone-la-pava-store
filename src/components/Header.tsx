@@ -189,7 +189,7 @@ export default function Header() {
                                         <ChevronRight size={18} />
                                     </Link>
 
-                                    <div className="mt-8 mb-4 px-4 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+                                    <div className="mt-8 mb-4 px-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#5c4033]/60">
                                         Nuestras Categorías
                                     </div>
 
@@ -198,14 +198,14 @@ export default function Header() {
                                             key={cat.slug}
                                             href={`/categoria/${cat.slug}`}
                                             onClick={() => setIsMobileMenuOpen(false)}
-                                            className="flex items-center justify-between p-4 rounded-2xl border border-transparent hover:border-orange-100 hover:bg-orange-50/30 transition-all font-semibold"
+                                            className="flex items-center justify-between p-4 rounded-2xl border border-transparent hover:border-orange-100 hover:bg-orange-50/30 transition-all font-bold text-[#3d2b1f]"
                                         >
                                             {cat.title}
-                                            <ChevronRight size={18} className="text-gray-300" />
+                                            <ChevronRight size={18} className="text-orange-200" />
                                         </Link>
                                     )) : (
                                         ['Mates', 'Termos', 'Accesorios'].map(placeholder => (
-                                            <div key={placeholder} className="p-4 rounded-2xl border border-dashed border-gray-100 text-gray-300 font-semibold italic">
+                                            <div key={placeholder} className="p-4 rounded-2xl border border-dashed border-orange-100 text-gray-400 font-semibold italic">
                                                 {placeholder}
                                             </div>
                                         ))
@@ -214,7 +214,7 @@ export default function Header() {
                             </div>
 
                             <div className="p-6 border-t border-orange-50 bg-[#faf9f6]">
-                                <p className="text-center text-[10px] font-bold text-gray-400 tracking-widest uppercase mb-4">
+                                <p className="text-center text-[10px] font-bold text-[#5c4033]/40 tracking-widest uppercase mb-4">
                                     Pone La Pava Store
                                 </p>
                                 <div className="flex justify-center gap-4">

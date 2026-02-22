@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
+import ProductCarousel from "@/components/ProductCarousel";
 import AnimatedPava from "@/components/AnimatedPava";
 import SteamEffect from "@/components/SteamEffect";
 import GoogleReviews from "@/components/GoogleReviews";
@@ -67,10 +68,13 @@ export default async function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-10 py-5 bg-orange-600 text-white rounded-full font-bold shadow-xl shadow-orange-900/40 hover:bg-orange-700 transition-all hover:-translate-y-1 flex items-center gap-2 group text-xl">
-              Ver Colección
+            <Link
+              href="#productos"
+              className="px-10 py-5 bg-orange-600 text-white rounded-full font-bold shadow-xl shadow-orange-900/40 hover:bg-orange-700 transition-all hover:-translate-y-1 flex items-center gap-2 group text-xl"
+            >
+              Ver Productos
               <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <button className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/30 rounded-full font-bold hover:bg-white/20 transition-all text-xl shadow-lg">
               Personalizar mi Mate
             </button>
@@ -112,8 +116,8 @@ export default async function Home() {
       </section>
 
       {/* Dynamic Products Section */}
-      <section className="py-24 max-w-7xl mx-auto px-4">
-        <div className="flex items-end justify-between mb-16">
+      <section id="productos" className="py-24 max-w-7xl mx-auto px-4 overflow-hidden">
+        <div className="flex items-end justify-between mb-16 px-4">
           <div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-[#3d2b1f]">Nuestros Mates destacados</h2>
             <div className="h-1.5 w-20 bg-orange-600 rounded-full"></div>
@@ -121,13 +125,9 @@ export default async function Home() {
         </div>
 
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {products.map((product: any) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
+          <ProductCarousel products={products} />
         ) : (
-          <div className="text-center py-20 bg-orange-50/30 rounded-[3rem] border border-dashed border-orange-200">
+          <div className="mx-4 text-center py-20 bg-orange-50/30 rounded-[3rem] border border-dashed border-orange-200">
             <p className="text-[#5c4033] font-medium italic">Estamos preparando las mejores piezas para vos...</p>
           </div>
         )}

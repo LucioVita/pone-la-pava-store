@@ -60,7 +60,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
                 {/* Product Info */}
                 <div className="flex flex-col">
-                    <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tight leading-tight">
+                    <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tight leading-tight text-[#3d2b1f]">
                         {product.name}
                     </h1>
 
@@ -76,7 +76,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     </div>
 
                     <div className="prose prose-orange mb-10">
-                        <p className="text-lg text-[#5c4033]/80 leading-relaxed font-medium">
+                        <p className="text-lg text-[#3d2b1f] leading-relaxed font-semibold">
                             {product.description}
                         </p>
                     </div>

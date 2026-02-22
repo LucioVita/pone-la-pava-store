@@ -10,7 +10,7 @@ async function getProduct(slug: string) {
     name,
     "slug": slug.current,
     price,
-    category,
+    "category": category->title,
     image,
     description,
     stock
