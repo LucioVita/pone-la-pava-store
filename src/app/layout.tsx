@@ -62,13 +62,29 @@ export default function RootLayout({
         />
         <WebSiteJsonLd name="Pone La Pava" url="https://ponelapava.ar" />
         <CartProvider>
-          <Header />
+          {/* Ocultamos el Header y Footer solo en el Studio de Sanity para que no se superpongan */}
+          <HeaderWrapper />
           {children}
-          <Footer />
+          <FooterWrapper />
           <CartSidebar />
           <ChatWidget />
         </CartProvider>
       </body>
     </html>
   );
+}
+
+// Componentes auxiliares para manejar la lógica de ruta
+function HeaderWrapper() {
+  const usePathname = require('next/navigation').usePathname;
+  const pathname = usePathname();
+  if (pathname?.startsWith('/studio')) return null;
+  return <Header />;
+}
+
+function FooterWrapper() {
+  const usePathname = require('next/navigation').usePathname;
+  const pathname = usePathname();
+  if (pathname?.startsWith('/studio')) return null;
+  return <Footer />;
 }
