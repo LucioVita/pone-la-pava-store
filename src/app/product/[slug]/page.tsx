@@ -13,7 +13,12 @@ async function getProduct(slug: string) {
     "category": category->title,
     image,
     description,
-    stock
+    stock,
+    variants[] {
+      name,
+      image,
+      stock
+    }
   }`;
     const product = await client.fetch(query, { slug });
     return product;

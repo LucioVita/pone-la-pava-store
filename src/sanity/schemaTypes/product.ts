@@ -56,5 +56,20 @@ export const productType = defineType({
             initialValue: 0,
             validation: (Rule) => Rule.min(0),
         }),
+        defineField({
+            name: 'variants',
+            title: 'Variantes (Colores/Modelos)',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        { name: 'name', type: 'string', title: 'Nombre del color/variante (Ej: Verde Hamertone)' },
+                        { name: 'image', type: 'image', title: 'Imagen específica', options: { hotspot: true } },
+                        { name: 'stock', type: 'number', title: 'Stock de esta variante', initialValue: 0 },
+                    ],
+                },
+            ],
+        }),
     ],
 })
