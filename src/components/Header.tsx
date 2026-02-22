@@ -62,20 +62,30 @@ export default function Header() {
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-6 text-sm font-bold uppercase tracking-widest text-[#5c4033]">
                         {categories.length > 0 ? (
-                            categories.map((cat) => (
-                                <Link
-                                    key={cat.slug}
-                                    href={`/categoria/${cat.slug}`}
-                                    className="hover:text-orange-600 transition-colors"
-                                >
-                                    {cat.title}
-                                </Link>
-                            ))
+                            <>
+                                {categories.slice(0, 4).map((cat) => (
+                                    <Link
+                                        key={cat.slug}
+                                        href={`/categoria/${cat.slug}`}
+                                        className="hover:text-orange-600 transition-colors whitespace-nowrap"
+                                    >
+                                        {cat.title}
+                                    </Link>
+                                ))}
+                                {categories.length > 4 && (
+                                    <button
+                                        onClick={() => setIsMobileMenuOpen(true)}
+                                        className="hover:text-orange-600 transition-colors whitespace-nowrap cursor-pointer"
+                                    >
+                                        MÁS +
+                                    </button>
+                                )}
+                            </>
                         ) : (
                             <>
-                                <Link href="#" className="hover:text-orange-600 transition-colors">Mates</Link>
-                                <Link href="#" className="hover:text-orange-600 transition-colors">Termos</Link>
-                                <Link href="#" className="hover:text-orange-600 transition-colors">Accesorios</Link>
+                                <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Mates</Link>
+                                <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Termos</Link>
+                                <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Accesorios</Link>
                             </>
                         )}
                     </nav>

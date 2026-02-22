@@ -20,7 +20,6 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string>("");
-  const [proactiveGrettingTriggered, setProactiveGrettingTriggered] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -40,11 +39,14 @@ export default function ChatWidget() {
     }
     setSessionId(storedId);
 
+    // Check if greeting was already triggered across sessions
+    const hasBeenGreeted = localStorage.getItem('pava_chat_greeted');
+
     // Proactive greeting after 8 seconds
     const timer = setTimeout(() => {
-      if (!isOpen && !proactiveGrettingTriggered) {
+      if (!isOpen && !hasBeenGreeted) {
         setIsOpen(true);
-        setProactiveGrettingTriggered(true);
+        localStorage.setItem('pava_chat_greeted', 'true');
         setMessages([
           {
             id: "greeting",
@@ -57,7 +59,7 @@ export default function ChatWidget() {
     }, 8000);
 
     return () => clearTimeout(timer);
-  }, [isOpen, proactiveGrettingTriggered]);
+  }, [isOpen]);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
