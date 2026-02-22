@@ -20,6 +20,7 @@ export default function ChatWidget() {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string>("");
+  const [proactiveGrettingTriggered, setProactiveGrettingTriggered] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -38,7 +39,25 @@ export default function ChatWidget() {
       localStorage.setItem(SESSION_KEY, storedId);
     }
     setSessionId(storedId);
-  }, []);
+
+    // Proactive greeting after 8 seconds
+    const timer = setTimeout(() => {
+      if (!isOpen && !proactiveGrettingTriggered) {
+        setIsOpen(true);
+        setProactiveGrettingTriggered(true);
+        setMessages([
+          {
+            id: "greeting",
+            text: "¡Hola! 🧉 Soy MarIA, tu asistente virtual. ¿Te puedo ayudar con algo o estás buscando algún producto en especial?",
+            sender: "bot",
+            timestamp: new Date(),
+          },
+        ]);
+      }
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, [isOpen, proactiveGrettingTriggered]);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,7 +144,7 @@ export default function ChatWidget() {
                   <Bot size={24} />
                 </div>
                 <div>
-                  <p className="font-semibold">Pone La Pava Bot</p>
+                  <p className="font-semibold">MarIA</p>
                   <p className="text-xs text-white/70">En línea para ayudarte</p>
                 </div>
               </div>

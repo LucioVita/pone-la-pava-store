@@ -11,6 +11,8 @@ import { client } from "@/sanity/lib/client";
 export default function Header() {
     const { cartCount, setIsCartOpen } = useCart();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const [categories, setCategories] = useState<{ title: string, slug: string }[]>([]);
 
     useEffect(() => {
@@ -24,12 +26,12 @@ export default function Header() {
 
     // Prevent scroll when menu is open
     useEffect(() => {
-        if (isMobileMenuOpen) {
+        if (isMobileMenuOpen || isSearchOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
         }
-    }, [isMobileMenuOpen]);
+    }, [isMobileMenuOpen, isSearchOpen]);
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 flex flex-col">
@@ -79,10 +81,41 @@ export default function Header() {
                     </nav>
                 </div>
 
-                <div className="flex items-center gap-2 md:gap-4">
-                    <button className="p-2 text-[#3d2b1f] hover:bg-orange-50 rounded-full transition-colors">
-                        <Search size={20} />
-                    </button>
+                <div className="flex items-center gap-2 md:gap-4 text-[#3d2b1f]">
+                    <div className="relative flex items-center">
+                        <AnimatePresence>
+                            {isSearchOpen && (
+                                <motion.div
+                                    initial={{ width: 0, opacity: 0 }}
+                                    animate={{ width: 240, opacity: 1 }}
+                                    exit={{ width: 0, opacity: 0 }}
+                                    className="overflow-hidden mr-2"
+                                >
+                                    <input
+                                        autoFocus
+                                        type="text"
+                                        placeholder="¿Qué buscás hoy?"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="w-full bg-orange-50 border-none rounded-full px-4 py-1.5 text-sm focus:ring-1 focus:ring-orange-200 outline-none"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' && searchQuery.trim()) {
+                                                setIsSearchOpen(false);
+                                                // Simulamos búsqueda por ahora o redirigimos
+                                                window.location.href = `/?s=${encodeURIComponent(searchQuery)}`;
+                                            }
+                                        }}
+                                    />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        <button
+                            onClick={() => setIsSearchOpen(!isSearchOpen)}
+                            className="p-2 hover:bg-orange-50 rounded-full transition-colors"
+                        >
+                            {isSearchOpen ? <X size={20} /> : <Search size={20} />}
+                        </button>
+                    </div>
                     <button
                         onClick={() => setIsCartOpen(true)}
                         className="p-2 text-[#3d2b1f] hover:bg-orange-50 rounded-full transition-colors relative"
