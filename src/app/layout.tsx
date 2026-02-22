@@ -5,6 +5,8 @@ import ChatWidget from "@/components/ChatWidget";
 import CartSidebar from "@/components/CartSidebar";
 import { CartProvider } from "@/context/CartContext";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/SEOJsonLd";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,7 +62,9 @@ export default function RootLayout({
         />
         <WebSiteJsonLd name="Pone La Pava" url="https://ponelapava.ar" />
         <CartProvider>
+          <Header />
           {children}
+          <Footer />
           <CartSidebar />
           <ChatWidget />
         </CartProvider>

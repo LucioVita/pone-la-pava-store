@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Menu, Search, X, ChevronRight, Instagram, Facebook } from "lucide-react";
+import { ShoppingCart, Menu, Search, X, ChevronRight, ChevronDown, Instagram, Facebook } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
@@ -61,26 +61,27 @@ export default function Header() {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center gap-6 text-sm font-bold uppercase tracking-widest text-[#5c4033]">
+                        <Link href="/" className="hover:text-orange-600 transition-colors whitespace-nowrap">
+                            INICIO
+                        </Link>
+
                         {categories.length > 0 ? (
-                            <>
-                                {categories.slice(0, 4).map((cat) => (
-                                    <Link
-                                        key={cat.slug}
-                                        href={`/categoria/${cat.slug}`}
-                                        className="hover:text-orange-600 transition-colors whitespace-nowrap"
-                                    >
-                                        {cat.title}
-                                    </Link>
-                                ))}
-                                {categories.length > 4 && (
-                                    <button
-                                        onClick={() => setIsMobileMenuOpen(true)}
-                                        className="hover:text-orange-600 transition-colors whitespace-nowrap cursor-pointer"
-                                    >
-                                        MÁS +
-                                    </button>
-                                )}
-                            </>
+                            <div className="relative group py-6">
+                                <button className="flex items-center gap-1 hover:text-orange-600 transition-colors uppercase cursor-pointer">
+                                    PRODUCTOS <ChevronDown size={16} />
+                                </button>
+                                <div className="absolute top-[80%] left-0 w-64 bg-white border border-orange-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col pt-2 pb-2">
+                                    {categories.map((cat) => (
+                                        <Link
+                                            key={cat.slug}
+                                            href={`/categoria/${cat.slug}`}
+                                            className="px-5 py-3 hover:bg-orange-50 hover:text-orange-600 transition-colors text-sm font-bold text-[#5c4033] whitespace-nowrap border-b border-orange-50 last:border-0"
+                                        >
+                                            {cat.title}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                         ) : (
                             <>
                                 <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Mates</Link>
@@ -88,6 +89,9 @@ export default function Header() {
                                 <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Accesorios</Link>
                             </>
                         )}
+                        <Link href="#contacto" className="hover:text-orange-600 transition-colors whitespace-nowrap">
+                            CONTACTO
+                        </Link>
                     </nav>
                 </div>
 

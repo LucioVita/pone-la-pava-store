@@ -26,6 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
+function getCategoryIcon(slug: string) {
+    const lowerSlug = slug.toLowerCase();
+    if (lowerSlug.includes('termo')) return '/cat-termo.png';
+    if (lowerSlug.includes('mate') || lowerSlug.includes('imperial') || lowerSlug.includes('camionero') || lowerSlug.includes('algarrobo')) return '/cat-mate.png';
+    if (lowerSlug.includes('canasta') || lowerSlug.includes('bolso') || lowerSlug.includes('kit') || lowerSlug.includes('mochila')) return '/cat-kit.png';
+    return '/cat-mate.png'; // default fallback
+}
+
 export default async function CategoryPage({ params }: Props) {
     const { slug } = await params;
 
@@ -61,7 +69,7 @@ export default async function CategoryPage({ params }: Props) {
             <div className="max-w-7xl mx-auto mt-4 md:mt-12">
                 <div className="text-center mb-12">
                     <div className="flex justify-center mb-6">
-                        <AnimatedCategoryIcon icon="🧉" />
+                        <AnimatedCategoryIcon icon={getCategoryIcon(slug)} />
                     </div>
                     <h1 className="text-4xl md:text-5xl font-black text-[#3d2b1f] uppercase tracking-tighter mb-4 italic">
                         {category.title}
@@ -83,7 +91,9 @@ export default async function CategoryPage({ params }: Props) {
                     </div>
                 ) : (
                     <div className="text-center py-20 bg-white rounded-3xl border border-orange-100 shadow-sm">
-                        <AnimatedCategoryIcon icon="🧉" />
+                        <div className="flex justify-center">
+                            <AnimatedCategoryIcon icon={getCategoryIcon(slug)} />
+                        </div>
                         <h2 className="text-2xl font-bold text-[#3d2b1f] mt-6 mb-2">No hay productos disponibles</h2>
                         <p className="text-gray-500">
                             Pronto agregaremos nuevos productos a esta categoría.

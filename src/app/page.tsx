@@ -2,13 +2,11 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import AnimatedPava from "@/components/AnimatedPava";
 import SteamEffect from "@/components/SteamEffect";
 import GoogleReviews from "@/components/GoogleReviews";
 import MapSection from "@/components/MapSection";
-import Footer from "@/components/Footer";
 import AnimatedCategoryIcon from "@/components/AnimatedCategoryIcon";
 import { ArrowRight, Star, ShieldCheck, Truck } from "lucide-react";
 
@@ -30,8 +28,7 @@ export default async function Home() {
   const products = await getProducts();
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f] selection:bg-orange-200">
-      <Header />
+    <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f] selection:bg-orange-200 pt-20">
 
       {/* Hero Section */}
       <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
@@ -160,8 +157,6 @@ export default async function Home() {
 
       {/* Map & Contact Section */}
       <MapSection />
-
-      <Footer />
     </div>
   );
 }
