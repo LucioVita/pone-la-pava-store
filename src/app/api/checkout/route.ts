@@ -22,6 +22,16 @@ export async function POST(req: Request) {
                 payer: {
                     email: payer?.email || 'test_user_78672195@testuser.com',
                 },
+                metadata: {
+                    first_name: payer?.firstName,
+                    last_name: payer?.lastName,
+                    phone: payer?.phone,
+                    dni: payer?.dni,
+                    province: payer?.province,
+                    city: payer?.city,
+                    address: payer?.address,
+                    shipping_method: payer?.shippingMethod,
+                },
                 back_urls: {
                     success: `${appUrl}/checkout/success`,
                     failure: `${appUrl}/checkout/failure`,

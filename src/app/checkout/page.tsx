@@ -83,9 +83,14 @@ export default function CheckoutPage() {
                     items,
                     payer: {
                         email: formData.email,
-                        name: formData.firstName,
-                        surname: formData.lastName,
+                        firstName: formData.firstName,
+                        lastName: formData.lastName,
                         phone: formData.phone,
+                        dni: formData.dni,
+                        province: formData.province,
+                        city: formData.city,
+                        address: formData.address,
+                        shippingMethod: shippingMethod,
                     }
                 }),
             });
