@@ -1,31 +1,31 @@
 # Estado del Proyecto - Pone La Pava Store 🧉
 
-## Fecha: 21 de Febrero, 2026 - Sesión 1 COMPLETADA ✨
+## Fecha: 21 de Febrero, 2026 - Sesión 2 COMPLETADA ✨
 
 ### ✅ Logros de hoy:
-1.  **Estructura Base:** Next.js 15 (App Router), Tailwind CSS 4 y TypeScript configurados.
-2.  **Repo GitHub:** Repositorio actualizado con todos los cambios: `luciomartinvita/pone-la-pava-store`.
-3.  **Sistema de Carrito Completo:** 
-    - `CartContext` con persistencia en `localStorage`.
-    - `CartSidebar` animado con Framer Motion.
-    - Botones de "Agregar al carrito" funcionales en Home y Detalles.
-4.  **Estética Premium & Animaciones:**
-    - **Hero Cover:** Nueva imagen de portada (`portada.png`) integrada con efecto de cristal y gradientes.
-    - **Steam Effect:** SVG dinámico overlayed sobre el mate de la portada para un efecto realista y "vivo".
-    - **AnimatedPava:** (Componente previo) SVG animado con efecto de vapor.
-    - **Categorías Dinámicas:** Micro-interacciones al pasar el mouse por los rubros.
-    - **Framer Motion:** Animaciones de entrada (fade-in/up) en todo el catálogo.
-5.  **CMS (Sanity):** Conexión total. Los productos se cargan dinámicamente desde el panel.
-6.  **SEO Strategy:** Análisis de competidores (Cebala, Todo Mates) y plan de palabras clave definido.
-7.  **Fixes Técnicos:** Resueltos conflictos de hidratación, configuración de hosts de imágenes y tipado de Next.js 15.
+1.  **Checkout & Pagos:**
+    - Integración completa de **Mercado Pago** con Back URLs configuradas al dominio `ponelapava.ar`.
+    - Webhook básico para notificaciones de pago creado.
+    - Página de éxito (`/checkout/success`) y error diseñadas.
+2.  **Logística Inteligente:**
+    - Sistema de costos de envío dinámicos por zonas (Cuyo, Centro, Norte/Patagonia).
+    - Opción de "Retiro en local" configurada con la dirección real: Pedernera 546, Villa Mercedes.
+3.  **Gestión de Catálogo Pro:**
+    - Implementación de **Categorías Dinámicas** vinculadas a productos.
+    - Instalación del plugin **Sanity Media Library** para gestión masiva de fotos.
+    - Iconos de categorías en Home actualizados con fotos reales de alta calidad.
+4.  **UI/UX Premium:**
+    - **Header Mobile:** Menú hamburguesa 100% funcional con animaciones de Framer Motion y acceso a categorías.
+    - **SEO & Social:** Metadatos actualizados al dominio oficial y enlaces a Instagram/Facebook funcionales.
+    - **Steam Effect:** Pulido del efecto de vapor sobre el mate de la portada.
 
 ### 🛠️ Pendientes para la próxima sesión:
-1.  **Fase 2 - Checkout:** Integración de **Mercado Pago** (Pasarela de pagos y Webhooks).
-2.  **Fase 3 - Logística:** Configuración de **Correo Argentino** para cálculo de envíos en tiempo real.
-3.  **Página de Éxito:** Crear la UI para el retorno de pago aprobado.
-4.  **n8n Debugging:** Verificar estabilidad del Chatbot (aunque ya funciona bien).
+1.  **Despliegue Final:** Configurar la App de Node.js en Hostinger reemplazando el WordPress actual.
+2.  **Automatización n8n:** Conectar el Webhook de ventas para que le llegue un WhatsApp de aviso a la dueña.
+3.  **Correo Argentino API:** Integración oficial con MiCorreo una vez que lleguen las credenciales.
+4.  **Carga Masiva:** Ayudar a la dueña a migrar las 1200 fotos de WordPress a la Media Library de Sanity.
 
 ### 📝 Cómo retomar:
-Retomamos directamente con la **Fase 2 (Pagos)**. Decime: **"Hola, retomemos el proyecto Pone La Pava donde dejamos (mirá PROJECT_STATUS.md)"**. Yo leeré esto y seguiremos con el checkout.
+Decime: **"Hola, vamos con el despliegue final en Hostinger"** o **"Conectemos las ventas con n8n"**.
 
-¡Todo empujado al repo! El sistema está listo para vender. 🧉🚀
+¡Todo al día en el repo! La tienda ya puede recibir pagos reales. 🧉🚀

@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ponelapava.ar"),
   title: "Pone La Pava - Tienda de Mates y Termos | Industria Argentina",
   description: "Descubrí la mejor selección de Mates Imperiales, Termos Stanley y Lumilagro, bombillas y accesorios. Equipá tu ritual matero con envíos a todo el país.",
   keywords: ["mate imperial", "termo stanley", "mate de calabaza", "bombilla mate", "mate argentina", "termo lumilagro", "cómo curar un mate"],
