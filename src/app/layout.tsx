@@ -5,8 +5,7 @@ import ChatWidget from "@/components/ChatWidget";
 import CartSidebar from "@/components/CartSidebar";
 import { CartProvider } from "@/context/CartContext";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/SEOJsonLd";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { HeaderWrapper, FooterWrapper } from "@/components/ConditionalLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,19 +71,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
-
-// Componentes auxiliares para manejar la lógica de ruta
-function HeaderWrapper() {
-  const usePathname = require('next/navigation').usePathname;
-  const pathname = usePathname();
-  if (pathname?.startsWith('/studio')) return null;
-  return <Header />;
-}
-
-function FooterWrapper() {
-  const usePathname = require('next/navigation').usePathname;
-  const pathname = usePathname();
-  if (pathname?.startsWith('/studio')) return null;
-  return <Footer />;
 }
