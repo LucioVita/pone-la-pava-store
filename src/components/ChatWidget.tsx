@@ -12,12 +12,14 @@ interface Message {
 }
 
 const WEBHOOK_URL = "https://n8n.resto.guruweb.com.ar/webhook/c25fc354-2a4e-4831-abdd-85113e39c772/chat";
+const SESSION_KEY = "pava_chat_session";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -27,6 +29,16 @@ export default function ChatWidget() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    // Generate or retrieve session ID
+    let storedId = localStorage.getItem(SESSION_KEY);
+    if (!storedId) {
+      storedId = Math.random().toString(36).substring(7);
+      localStorage.setItem(SESSION_KEY, storedId);
+    }
+    setSessionId(storedId);
+  }, []);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +62,8 @@ export default function ChatWidget() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: userMessage.text,
+          chatInput: userMessage.text,
+          sessionId: sessionId,
           sender: "user",
         }),
       });
@@ -66,9 +79,16 @@ export default function ChatWidget() {
       const data = await response.json();
       console.log("n8n Data:", data);
 
+      // Handle common n8n response shapes
+      const responseText =
+        (Array.isArray(data) ? data[0]?.output : data.output) ||
+        data.message ||
+        data.response ||
+        "Lo siento, no pude procesar tu mensaje.";
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: data.output || data.message || "Lo siento, no pude procesar tu mensaje.",
+        text: responseText,
         sender: "bot",
         timestamp: new Date(),
       };
@@ -172,7 +192,7 @@ export default function ChatWidget() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Escribí tu mensaje..."
-                  className="flex-1 rounded-full bg-gray-100 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#3d2b1f]/20"
+                  className="flex-1 rounded-full bg-gray-100 px-4 py-2 text-sm text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-[#3d2b1f]/20 border-none"
                 />
                 <button
                   type="submit"
