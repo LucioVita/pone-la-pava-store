@@ -16,6 +16,7 @@ interface ProductDetailProps {
         price: number;
         category: string;
         image: any;
+        gallery?: any[];
         description: string;
         stock?: number;
         variants?: Array<{
@@ -30,9 +31,21 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     const { addToCart } = useCart();
     const [selectedVariant, setSelectedVariant] = useState<number | null>(null);
 
+    // Todas las imágenes: la principal + la galería (si existe)
+    const allImages = React.useMemo(() => {
+        const images = [product.image];
+        if (product.gallery && Array.isArray(product.gallery)) {
+            images.push(...product.gallery);
+        }
+        return images;
+    }, [product.image, product.gallery]);
+
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+    // Cuando cambia la variante, si esa variante tiene imagen, la mostramos
     const currentImage = selectedVariant !== null && product.variants?.[selectedVariant]?.image
         ? product.variants[selectedVariant].image
-        : product.image;
+        : allImages[activeImageIndex];
 
     const currentStock = selectedVariant !== null && product.variants?.[selectedVariant]
         ? product.variants[selectedVariant].stock
@@ -59,19 +72,44 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
                 {/* Image Gallery */}
-                <div className="relative aspect-square rounded-[3rem] overflow-hidden bg-white shadow-sm border border-orange-100">
-                    {currentImage && (
-                        <Image
-                            src={urlFor(currentImage).url()}
-                            alt={product.name}
-                            fill
-                            className="object-cover transition-all duration-500"
-                            priority
-                        />
-                    )}
-                    <div className="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1.5 rounded-full text-xs font-black text-orange-900 shadow-sm uppercase tracking-widest">
-                        {product.category}
+                <div className="flex flex-col gap-6">
+                    <div className="relative aspect-square rounded-[3rem] overflow-hidden bg-white shadow-sm border border-orange-100">
+                        {currentImage && (
+                            <Image
+                                src={urlFor(currentImage).url()}
+                                alt={product.name}
+                                fill
+                                className="object-cover transition-all duration-500"
+                                priority
+                            />
+                        )}
+                        <div className="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1.5 rounded-full text-xs font-black text-orange-900 shadow-sm uppercase tracking-widest">
+                            {product.category}
+                        </div>
                     </div>
+
+                    {/* Thumbnails */}
+                    {allImages.length > 1 && (
+                        <div className="flex flex-wrap gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                            {allImages.map((img, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => {
+                                        setActiveImageIndex(idx);
+                                        setSelectedVariant(null); // Deseleccionamos variante si eligen una foto de la galería
+                                    }}
+                                    className={`relative w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all flex-shrink-0 ${activeImageIndex === idx && selectedVariant === null ? 'border-[#3d2b1f] scale-105' : 'border-orange-100'}`}
+                                >
+                                    <Image
+                                        src={urlFor(img).url()}
+                                        alt={`${product.name} thumbnail ${idx}`}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* Product Info */}

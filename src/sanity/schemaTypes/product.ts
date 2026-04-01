@@ -36,12 +36,22 @@ export const productType = defineType({
         }),
         defineField({
             name: 'image',
-            title: 'Imagen del Producto',
+            title: 'Imagen Principal',
             type: 'image',
             options: {
                 hotspot: true,
             },
             validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'gallery',
+            title: 'Galería de Imágenes',
+            type: 'array',
+            of: [{ type: 'image', options: { hotspot: true } }],
+            options: {
+                layout: 'grid'
+            },
+            description: 'Agregá fotos adicionales del producto desde otros ángulos.'
         }),
         defineField({
             name: 'description',

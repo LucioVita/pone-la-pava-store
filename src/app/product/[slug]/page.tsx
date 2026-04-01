@@ -12,6 +12,7 @@ async function getProduct(slug: string) {
     price,
     "category": category->title,
     image,
+    gallery,
     description,
     stock,
     variants[] {
