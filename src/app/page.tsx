@@ -36,13 +36,13 @@ export default async function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/portada.png"
-            alt="Pone La Pava Portada"
+            src="/fachada.jpeg"
+            alt="Pone La Pava Local Fachada"
             fill
-            className="object-cover object-center brightness-90"
+            className="object-cover object-center brightness-75 scale-105"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#faf9f6]"></div>
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
         {/* Steam Effect positioned over the mate - adjusting based on common composition */}
@@ -50,34 +50,36 @@ export default async function Home() {
           <SteamEffect className="w-40 h-40" />
         </div>
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wider uppercase mb-8 shadow-sm">
-            <Star size={12} className="fill-orange-400 text-orange-400" />
-            Artesanía Argentina de Exportación
-          </div>
+        <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12">
+          <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 md:p-16 rounded-[3rem] shadow-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-600/80 text-white text-[10px] md:text-xs font-bold tracking-widest uppercase mb-8 shadow-sm">
+              <Star size={12} className="fill-white text-white" />
+              Local Físico en Villa Mercedes
+            </div>
 
-          <h1 className="text-6xl md:text-9xl font-black mb-4 tracking-tighter text-white drop-shadow-2xl">
-            Pone La Pava
-          </h1>
-          <h2 className="text-2xl md:text-4xl font-bold mb-8 tracking-tight text-orange-400 drop-shadow-xl">
-            Mates y Termos Premium en Argentina
-          </h2>
+            <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter text-white drop-shadow-2xl">
+              Pone La Pava
+            </h1>
+            <h2 className="text-xl md:text-3xl font-bold mb-8 tracking-tight text-orange-200 drop-shadow-xl uppercase">
+              Tradición y Calidad en cada Mate
+            </h2>
 
-          <p className="text-xl md:text-3xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-md">
-            Especialistas en la cultura del mate. Encontrá tu Mate Imperial, Termo Stanley o sets materos diseñados para toda la vida. Mates de calabaza, madera y algarrobo 100% artesanales.
-          </p>
+            <p className="text-lg md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
+              Te esperamos en nuestro local con la mejor selección de Mates Imperiales, Termos Stanley y accesorios premium. Artesanía 100% argentina.
+            </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="#productos"
-              className="px-10 py-5 bg-orange-600 text-white rounded-full font-bold shadow-xl shadow-orange-900/40 hover:bg-orange-700 transition-all hover:-translate-y-1 flex items-center gap-2 group text-xl"
-            >
-              Ver Productos
-              <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <button className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/30 rounded-full font-bold hover:bg-white/20 transition-all text-xl shadow-lg">
-              Personalizar mi Mate
-            </button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="#productos"
+                className="px-10 py-5 bg-orange-600 text-white rounded-full font-bold shadow-xl shadow-orange-900/40 hover:bg-orange-700 transition-all hover:-translate-y-1 flex items-center gap-2 group text-xl w-full sm:w-auto justify-center"
+              >
+                Ver Catálogo
+                <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <button className="px-10 py-5 bg-white/20 backdrop-blur-md text-white border border-white/30 rounded-full font-bold hover:bg-white/30 transition-all text-xl shadow-lg w-full sm:w-auto">
+                Contacto WhatsApp
+              </button>
+            </div>
           </div>
         </div>
       </section>
