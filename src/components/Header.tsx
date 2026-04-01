@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Menu, Search, X, ChevronRight, ChevronDown, Instagram, Facebook } from "lucide-react";
+import { ShoppingCart, Menu, Search, X, ChevronRight, ChevronDown, Instagram, Facebook, Phone, Mail, MapPin } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
@@ -35,11 +35,22 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 flex flex-col">
-            {/* Top SEO Banner */}
-            <div className="bg-[#3d2b1f] w-full text-center py-1">
-                <span className="text-xs text-orange-200 font-medium tracking-wide">
-                    Envíos a todo el país | Mates Artesanales y Termos con Garantía Local
-                </span>
+            {/* Top Contact Bar */}
+            <div className="bg-[#3d2b1f] w-full text-center py-1.5 px-4">
+                <div className="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-2 md:gap-6 text-[10px] md:text-xs text-orange-200 font-bold uppercase tracking-wider">
+                    <div className="flex items-center gap-2">
+                        <Phone size={12} className="text-orange-400" />
+                        <a href="tel:+5491157348764" className="hover:text-white transition-colors">+54 9 11 5734-8764</a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Mail size={12} className="text-orange-400" />
+                        <a href="mailto:info@ponelapava.ar" className="hover:text-white transition-colors">info@ponelapava.ar</a>
+                    </div>
+                    <div className="hidden lg:flex items-center gap-2">
+                        <MapPin size={12} className="text-orange-400" />
+                        <span>Pedernera 546, X5016 Villa Mercedes, San Luis, Argentina</span>
+                    </div>
+                </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between w-full">
@@ -77,6 +88,7 @@ export default function Header() {
                                     { title: "Latas Materas", slug: "latas-materas" },
                                     { title: "Canastas Materas", slug: "canastas-materas" },
                                     { title: "Mochilas Materas", slug: "mochilas-materas" },
+                                    { title: "Bombillas", slug: "bombillas" },
                                 ].map((cat) => (
                                     <Link
                                         key={cat.slug}
@@ -200,6 +212,7 @@ export default function Header() {
                                         { title: "Latas Materas", slug: "latas-materas" },
                                         { title: "Canastas Materas", slug: "canastas-materas" },
                                         { title: "Mochilas Materas", slug: "mochilas-materas" },
+                                        { title: "Bombillas", slug: "bombillas" },
                                     ].map((cat) => (
                                         <Link
                                             key={cat.slug}

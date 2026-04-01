@@ -138,9 +138,9 @@ export default async function Home() {
         <h3 className="text-2xl font-black mb-12 text-center uppercase tracking-widest text-[#3d2b1f]">Explorar por rubro</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
-            { slug: "mates", icon: "/cat-mate.png", title: "MATES" },
-            { slug: "termos", icon: "/cat-termo.png", title: "TERMOS" },
-            { slug: "kits", icon: "/cat-kit.png", title: "CANASTAS MATERAS" },
+            { slug: "mates", icon: "/cat-mate.png", title: "Mates" },
+            { slug: "termos", icon: "/cat-termo.png", title: "Termos" },
+            { slug: "kits", icon: "/cat-kit.png", title: "Canastas materas" },
           ].map((cat, i) => (
             <Link 
               key={i} 
@@ -150,7 +150,7 @@ export default async function Home() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-[5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
               <div className="relative z-10 flex flex-col items-center gap-4">
                 <AnimatedCategoryIcon icon={cat.icon} />
-                <h3 className="text-3xl font-black tracking-tighter text-[#3d2b1f] group-hover:text-orange-600 transition-colors uppercase">
+                <h3 className="text-2xl font-black text-[#3d2b1f] group-hover:text-orange-600 transition-colors">
                   {cat.title}
                 </h3>
               </div>
