@@ -90,6 +90,7 @@ export default function Header() {
                                     { title: "Mochilas Materas", slug: "mochilas-materas" },
                                     { title: "Bombillas", slug: "bombillas" },
                                     { title: "Automate Acero", slug: "automate-acero" },
+                                    { title: "Mates Personalizados", slug: "mates-personalizados" },
                                 ].map((cat) => (
                                     <Link
                                         key={cat.slug}
@@ -215,6 +216,7 @@ export default function Header() {
                                         { title: "Mochilas Materas", slug: "mochilas-materas" },
                                         { title: "Bombillas", slug: "bombillas" },
                                         { title: "Automate Acero", slug: "automate-acero" },
+                                        { title: "Mates Personalizados", slug: "mates-personalizados" },
                                     ].map((cat) => (
                                         <Link
                                             key={cat.slug}

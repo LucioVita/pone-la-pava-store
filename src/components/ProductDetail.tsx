@@ -188,7 +188,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                             <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-800">
                                 <Truck size={20} />
                             </div>
-                            <p className="text-sm font-bold">Envío gratis en compras superiores a $50.000</p>
+                            <p className="text-sm font-bold">Envío gratis en compras superiores a $100.000</p>
                         </div>
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-800">
@@ -200,7 +200,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                             <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-800">
                                 <ShieldCheck size={20} />
                             </div>
-                            <p className="text-sm font-bold">Garantía oficial Pone La Pava - 12 meses</p>
+                            <p className="text-sm font-bold">Garantía oficial Pone La Pava - 3 meses</p>
                         </div>
                     </div>
                 </div>
