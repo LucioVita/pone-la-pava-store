@@ -44,7 +44,7 @@ export default function Header() {
                     </div>
                     <div className="flex items-center gap-2">
                         <Mail size={12} className="text-orange-400" />
-                        <a href="mailto:info@ponelapava.ar" className="hover:text-white transition-colors">info@ponelapava.ar</a>
+                        <a href="mailto:ponelapavaargentina@gmail.com" className="hover:text-white transition-colors">ponelapavaargentina@gmail.com</a>
                     </div>
                     <div className="hidden lg:flex items-center gap-2">
                         <MapPin size={12} className="text-orange-400" />

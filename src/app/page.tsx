@@ -60,13 +60,9 @@ export default async function Home() {
             <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter text-white drop-shadow-2xl">
               Pone La Pava
             </h1>
-            <h2 className="text-xl md:text-3xl font-bold mb-8 tracking-tight text-orange-200 drop-shadow-xl uppercase">
+            <h2 className="text-xl md:text-3xl font-bold mb-12 tracking-tight text-orange-200 drop-shadow-xl uppercase">
               Tradición y Calidad en cada Mate
             </h2>
-
-            <p className="text-lg md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-              Te esperamos en nuestro local con la mejor selección de Mates Imperiales, Termos Stanley y accesorios premium. Artesanía 100% argentina.
-            </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -142,7 +138,7 @@ export default async function Home() {
           {[
             { slug: "mates", icon: "/cat-mate.png", title: "Mates" },
             { slug: "termos", icon: "/cat-termo.png", title: "Termos" },
-            { slug: "kits", icon: "/cat-kit.png", title: "Canastas materas" },
+            { slug: "canastas-materas", icon: "/cat-kit.png", title: "Canastas materas" },
           ].map((cat, i) => (
             <Link 
               key={i} 
