@@ -29,8 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function getCategoryIcon(slug: string) {
     const lowerSlug = slug.toLowerCase();
     if (lowerSlug.includes('termo')) return '/cat-termo.png';
+    if (lowerSlug.includes('personalizado')) return '/cat-personalizado.png';
+    if (lowerSlug.includes('mochila')) return '/cat-mochila.png';
+    if (lowerSlug.includes('set')) return '/cat-set.png';
     if (lowerSlug.includes('mate') || lowerSlug.includes('imperial') || lowerSlug.includes('camionero') || lowerSlug.includes('algarrobo')) return '/cat-mate.png';
-    if (lowerSlug.includes('canasta') || lowerSlug.includes('bolso') || lowerSlug.includes('kit') || lowerSlug.includes('mochila')) return '/cat-kit.png';
+    if (lowerSlug.includes('canasta') || lowerSlug.includes('bolso') || lowerSlug.includes('kit')) return '/cat-kit.png';
     return '/cat-mate.png'; // default fallback
 }
 

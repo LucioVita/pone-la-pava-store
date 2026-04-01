@@ -136,26 +136,42 @@ export default async function Home() {
         )}
       </section>
 
-      {/* Categories Preview - Static Icons as fallback/complement */}
+      {/* Categories Preview */}
       <section className="py-24 max-w-7xl mx-auto px-4 border-t border-orange-100">
         <h3 className="text-2xl font-black mb-12 text-center uppercase tracking-widest text-[#3d2b1f]">Explorar por rubro</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { slug: "mates", icon: "/cat-mate.png", title: "Mates" },
             { slug: "termos", icon: "/cat-termo.png", title: "Termos" },
             { slug: "canastas-materas", icon: "/cat-kit.png", title: "Canastas materas" },
+            { slug: "mochilas-materas", icon: "/cat-mochila.png", title: "Mochilas materas" },
+            { slug: "sets-materos", icon: "/cat-set.png", title: "Sets materos" },
+            { slug: "mates-personalizados", icon: "/cat-personalizado.png", title: "Mates personalizados" },
           ].map((cat, i) => (
             <Link 
               key={i} 
               href={`/categoria/${cat.slug}`}
-              className="group relative bg-white p-10 rounded-[2.5rem] shadow-sm border border-orange-100 flex flex-col items-center justify-center transition-all hover:shadow-xl hover:border-orange-200 overflow-hidden cursor-pointer h-64"
+              className="group relative rounded-[2rem] overflow-hidden cursor-pointer h-80 md:h-96 block shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-[5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-              <div className="relative z-10 flex flex-col items-center gap-4">
-                <AnimatedCategoryIcon icon={cat.icon} />
-                <h3 className="text-2xl font-black text-[#3d2b1f] group-hover:text-orange-600 transition-colors">
+              {/* Full-bleed background image */}
+              <Image
+                src={cat.icon}
+                alt={cat.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-500 group-hover:from-black/80" />
+              {/* Title at the bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+                <h3 className="text-3xl font-black text-white drop-shadow-lg tracking-tight">
                   {cat.title}
                 </h3>
+                <div className="flex items-center gap-2 mt-3 text-orange-200 font-semibold text-sm opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  <span>Ver productos</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </Link>
           ))}
