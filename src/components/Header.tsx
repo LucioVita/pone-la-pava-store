@@ -65,30 +65,30 @@ export default function Header() {
                             INICIO
                         </Link>
 
-                        {categories.length > 0 ? (
-                            <div className="relative group py-6">
-                                <button className="flex items-center gap-1 hover:text-orange-600 transition-colors uppercase cursor-pointer">
-                                    PRODUCTOS <ChevronDown size={16} />
-                                </button>
-                                <div className="absolute top-[80%] left-0 w-64 bg-white border border-orange-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col pt-2 pb-2">
-                                    {categories.map((cat) => (
-                                        <Link
-                                            key={cat.slug}
-                                            href={`/categoria/${cat.slug}`}
-                                            className="px-5 py-3 hover:bg-orange-50 hover:text-orange-600 transition-colors text-sm font-bold text-[#5c4033] whitespace-nowrap border-b border-orange-50 last:border-0"
-                                        >
-                                            {cat.title}
-                                        </Link>
-                                    ))}
-                                </div>
+                        <div className="relative group py-6">
+                            <button className="flex items-center gap-1 hover:text-orange-600 transition-colors uppercase cursor-pointer">
+                                PRODUCTOS <ChevronDown size={16} />
+                            </button>
+                            <div className="absolute top-[80%] left-0 w-64 bg-white border border-orange-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col pt-2 pb-2">
+                                {[
+                                    { title: "Mates", slug: "mates" },
+                                    { title: "Termos", slug: "termos" },
+                                    { title: "Línea Stanley", slug: "linea-stanley" },
+                                    { title: "Latas Materas", slug: "latas-materas" },
+                                    { title: "Canastas Materas", slug: "canastas-materas" },
+                                    { title: "Mochilas Materas", slug: "mochilas-materas" },
+                                ].map((cat) => (
+                                    <Link
+                                        key={cat.slug}
+                                        href={`/categoria/${cat.slug}`}
+                                        className="px-5 py-3 hover:bg-orange-50 hover:text-orange-600 transition-colors text-sm font-bold text-[#5c4033] whitespace-nowrap border-b border-orange-50 last:border-0"
+                                    >
+                                        {cat.title}
+                                    </Link>
+                                ))}
                             </div>
-                        ) : (
-                            <>
-                                <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Mates</Link>
-                                <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Termos</Link>
-                                <Link href="#" className="hover:text-orange-600 transition-colors whitespace-nowrap">Accesorios</Link>
-                            </>
-                        )}
+                        </div>
+
                         <Link href="#contacto" className="hover:text-orange-600 transition-colors whitespace-nowrap">
                             CONTACTO
                         </Link>
@@ -193,7 +193,14 @@ export default function Header() {
                                         Nuestras Categorías
                                     </div>
 
-                                    {categories.length > 0 ? categories.map((cat) => (
+                                    {[
+                                        { title: "Mates", slug: "mates" },
+                                        { title: "Termos", slug: "termos" },
+                                        { title: "Línea Stanley", slug: "linea-stanley" },
+                                        { title: "Latas Materas", slug: "latas-materas" },
+                                        { title: "Canastas Materas", slug: "canastas-materas" },
+                                        { title: "Mochilas Materas", slug: "mochilas-materas" },
+                                    ].map((cat) => (
                                         <Link
                                             key={cat.slug}
                                             href={`/categoria/${cat.slug}`}
@@ -203,13 +210,7 @@ export default function Header() {
                                             {cat.title}
                                             <ChevronRight size={18} className="text-orange-200" />
                                         </Link>
-                                    )) : (
-                                        ['Mates', 'Termos', 'Accesorios'].map(placeholder => (
-                                            <div key={placeholder} className="p-4 rounded-2xl border border-dashed border-orange-100 text-gray-400 font-semibold italic">
-                                                {placeholder}
-                                            </div>
-                                        ))
-                                    )}
+                                    ))}
                                 </nav>
                             </div>
 
