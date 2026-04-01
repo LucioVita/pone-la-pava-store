@@ -72,9 +72,14 @@ export default async function Home() {
                 Ver Catálogo
                 <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="px-10 py-5 bg-white/20 backdrop-blur-md text-white border border-white/30 rounded-full font-bold hover:bg-white/30 transition-all text-xl shadow-lg w-full sm:w-auto">
+              <a 
+                href="https://wa.me/5491157348764"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-10 py-5 bg-white/20 backdrop-blur-md text-white border border-white/30 rounded-full font-bold hover:bg-white/30 transition-all text-xl shadow-lg w-full sm:w-auto text-center"
+              >
                 Contacto WhatsApp
-              </button>
+              </a>
             </div>
           </div>
         </div>

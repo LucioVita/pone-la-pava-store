@@ -33,16 +33,6 @@ export default function MapSection() {
                                     <p className="text-gray-500 font-medium">Lunes a Sábado: 09:00 - 13:00 | 17:00 - 21:00</p>
                                 </div>
                             </div>
-
-                            <div className="flex gap-6 items-start">
-                                <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-orange-600 flex-shrink-0 border border-orange-50">
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-lg text-[#3d2b1f]">WhatsApp</h4>
-                                    <p className="text-gray-500 font-medium">Click para coordinar tu visita</p>
-                                </div>
-                            </div>
                         </div>
 
                         <div className="mt-12 p-8 bg-orange-600 rounded-[2.5rem] text-white shadow-xl shadow-orange-900/20">
