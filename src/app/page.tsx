@@ -138,16 +138,23 @@ export default async function Home() {
         <h3 className="text-2xl font-black mb-12 text-center uppercase tracking-widest text-[#3d2b1f]">Explorar por rubro</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
-            { tag: "Mates", icon: "/cat-mate.png", title: "Mates Imperiales", desc: "Cuero legítimo y virolas de alpaca." },
-            { tag: "Termos", icon: "/cat-termo.png", title: "Termos Stanley", desc: "Grabados láser personalizados." },
-            { tag: "Kits", icon: "/cat-kit.png", title: "Canastas Materas", desc: "El set ideal para tus viajes." },
+            { slug: "mates", icon: "/cat-mate.png", title: "MATES" },
+            { slug: "termos", icon: "/cat-termo.png", title: "TERMOS" },
+            { slug: "kits", icon: "/cat-kit.png", title: "CANASTAS MATERAS" },
           ].map((cat, i) => (
-            <div key={i} className="group relative bg-white p-10 rounded-[2.5rem] shadow-sm border border-orange-100 flex flex-col items-center transition-all hover:shadow-xl hover:border-orange-200 overflow-hidden cursor-pointer">
+            <Link 
+              key={i} 
+              href={`/categoria/${cat.slug}`}
+              className="group relative bg-white p-10 rounded-[2.5rem] shadow-sm border border-orange-100 flex flex-col items-center justify-center transition-all hover:shadow-xl hover:border-orange-200 overflow-hidden cursor-pointer h-64"
+            >
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-[5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-              <AnimatedCategoryIcon icon={cat.icon} />
-              <h3 className="text-2xl font-black mb-3 relative z-10">{cat.title}</h3>
-              <p className="text-gray-500 text-center relative z-10 font-medium leading-relaxed">{cat.desc}</p>
-            </div>
+              <div className="relative z-10 flex flex-col items-center gap-4">
+                <AnimatedCategoryIcon icon={cat.icon} />
+                <h3 className="text-3xl font-black tracking-tighter text-[#3d2b1f] group-hover:text-orange-600 transition-colors uppercase">
+                  {cat.title}
+                </h3>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
