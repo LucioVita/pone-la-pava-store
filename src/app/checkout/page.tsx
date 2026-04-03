@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
-import Header from "@/components/Header";
 import { Truck, Store, MapPin, ArrowRight, ChevronDown, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
@@ -109,8 +108,7 @@ export default function CheckoutPage() {
 
     if (cart.length === 0) {
         return (
-            <div className="min-h-screen bg-[#faf9f6]">
-                <Header />
+            <div className="min-h-screen bg-[#faf9f6] pt-20">
                 <div className="max-w-7xl mx-auto px-4 pt-40 text-center">
                     <p className="text-xl font-bold">Tu carrito está vacío</p>
                     <a href="/" className="text-orange-600 mt-4 inline-block">Volver a la tienda</a>
@@ -120,8 +118,7 @@ export default function CheckoutPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f]">
-            <Header />
+        <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f] pt-20">
 
             <main className="max-w-7xl mx-auto px-4 pt-32 pb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">

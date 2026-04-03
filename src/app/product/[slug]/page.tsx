@@ -1,6 +1,4 @@
 import { client } from "@/sanity/lib/client";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ProductDetail from "@/components/ProductDetail";
 import { notFound } from "next/navigation";
 
@@ -34,10 +32,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     }
 
     return (
-        <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f]">
-            <Header />
+        <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f] pt-20">
             <ProductDetail product={product} />
-            <Footer />
         </div>
     );
 }

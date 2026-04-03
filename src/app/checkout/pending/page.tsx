@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { Clock, ArrowRight } from "lucide-react";
-import Header from "@/components/Header";
 
 export default function PendingPage() {
     return (
-        <div className="min-h-screen bg-[#faf9f6] flex flex-col">
-            <Header />
+        <div className="min-h-screen bg-[#faf9f6] flex flex-col pt-24">
             <main className="flex-1 flex items-center justify-center p-4">
-                <div className="bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-orange-100 max-w-lg w-full text-center mt-20">
+                <div className="bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-orange-100 max-w-lg w-full text-center">
                     <div className="w-24 h-24 bg-yellow-50 text-yellow-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
                         <Clock size={48} />
                     </div>
