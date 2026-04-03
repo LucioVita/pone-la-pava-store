@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { client } from "@/sanity/lib/client";
+import { useSearchParams, usePathname } from 'next/navigation';
 
 export default function Header() {
     const { cartCount, setIsCartOpen } = useCart();
@@ -14,6 +15,17 @@ export default function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [categories, setCategories] = useState<{ title: string, slug: string }[]>([]);
+
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const s = searchParams.get('s');
+        if (s && pathname === '/') {
+            setSearchQuery(s);
+            setIsSearchOpen(true);
+        }
+    }, [searchParams, pathname]);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -131,7 +143,7 @@ export default function Header() {
                                             if (e.key === 'Enter' && searchQuery.trim()) {
                                                 setIsSearchOpen(false);
                                                 // Simulamos búsqueda por ahora o redirigimos
-                                                window.location.href = `/?s=${encodeURIComponent(searchQuery)}`;
+                                                window.location.href = `/?s=${encodeURIComponent(searchQuery)}#productos`;
                                             }
                                         }}
                                     />

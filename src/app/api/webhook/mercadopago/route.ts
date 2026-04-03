@@ -22,7 +22,7 @@ export async function POST(req: Request) {
                 console.log("¡Pago aprobado! Referencia externa:", data.external_reference);
 
                 // Enviar señal a n8n
-                const N8N_WEBHOOK_URL = "https://n8n.resto.guruweb.com.ar/webhook/c25fc354-2a4e-4831-abdd-85113e39c772/chat";
+                const N8N_WEBHOOK_URL = "https://n8n.resto.guruweb.com.ar/webhook/ventas";
 
                 try {
                     await fetch(N8N_WEBHOOK_URL, {

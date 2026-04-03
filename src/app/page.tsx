@@ -11,8 +11,8 @@ import MapSection from "@/components/MapSection";
 import AnimatedCategoryIcon from "@/components/AnimatedCategoryIcon";
 import { ArrowRight, Star, ShieldCheck, Truck } from "lucide-react";
 
-async function getProducts() {
-  const query = `*[_type == "product"] | order(_createdAt desc) [0...6] {
+async function getProducts(search?: string) {
+  let query = `*[_type == "product"] | order(_createdAt desc) [0...6] {
     _id,
     name,
     "slug": slug.current,
@@ -21,12 +21,27 @@ async function getProducts() {
     image,
     description
   }`;
-  const products = await client.fetch(query, {}, { next: { revalidate: 60 } });
+
+  if (search) {
+    query = `*[_type == "product" && (name match $search || description match $search || category->title match $search)] | order(_createdAt desc) {
+      _id,
+      name,
+      "slug": slug.current,
+      price,
+      "category": category->title,
+      image,
+      description
+    }`;
+  }
+
+  const products = await client.fetch(query, { search: search ? `${search}*` : "" }, { next: { revalidate: 60 } });
   return products;
 }
 
-export default async function Home() {
-  const products = await getProducts();
+export default async function Home({ searchParams }: { searchParams: Promise<{ s?: string }> }) {
+  const { s: searchQuery } = await searchParams;
+  const products = await getProducts(searchQuery);
+  const isSearching = !!searchQuery;
 
   return (
     <div className="min-h-screen bg-[#faf9f6] text-[#3d2b1f] selection:bg-orange-200 pt-20">
@@ -72,7 +87,7 @@ export default async function Home() {
                 Ver Catálogo
                 <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a 
+              <a
                 href="https://wa.me/5491157348764"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -122,16 +137,33 @@ export default async function Home() {
       <section id="productos" className="py-24 max-w-7xl mx-auto px-4 overflow-hidden">
         <div className="flex items-end justify-between mb-16 px-4">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-[#3d2b1f]">Nuestros Mates destacados</h2>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-[#3d2b1f]">
+              {isSearching ? `Resultados para: "${searchQuery}"` : "Nuestros Mates destacados"}
+            </h2>
             <div className="h-1.5 w-20 bg-orange-600 rounded-full"></div>
           </div>
+          {isSearching && (
+            <Link href="/" className="text-orange-600 font-bold hover:underline mb-4">
+              Limpiar búsqueda
+            </Link>
+          )}
         </div>
 
         {products.length > 0 ? (
-          <ProductCarousel products={products} />
+          isSearching ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mx-4">
+              {products.map((product: any) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <ProductCarousel products={products} />
+          )
         ) : (
           <div className="mx-4 text-center py-20 bg-orange-50/30 rounded-[3rem] border border-dashed border-orange-200">
-            <p className="text-[#5c4033] font-medium italic">Estamos preparando las mejores piezas para vos...</p>
+            <p className="text-[#5c4033] font-medium italic">
+              {isSearching ? "No encontramos productos que coincidan con tu búsqueda." : "Estamos preparando las mejores piezas para vos..."}
+            </p>
           </div>
         )}
       </section>
@@ -148,8 +180,8 @@ export default async function Home() {
             { slug: "sets-materos", icon: "/cat-set.png", title: "Sets materos" },
             { slug: "mates-personalizados", icon: "/cat-personalizado.png", title: "Mates personalizados" },
           ].map((cat, i) => (
-            <Link 
-              key={i} 
+            <Link
+              key={i}
               href={`/categoria/${cat.slug}`}
               className="group relative rounded-[2rem] overflow-hidden cursor-pointer h-80 md:h-96 block shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
