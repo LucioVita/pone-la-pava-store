@@ -36,14 +36,18 @@ export default function Header() {
         fetchCategories();
     }, []);
 
-    // Prevent scroll when menu is open
+    // Prevent scroll only when mobile menu is open
     useEffect(() => {
-        if (isMobileMenuOpen || isSearchOpen) {
+        if (isMobileMenuOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
         }
-    }, [isMobileMenuOpen, isSearchOpen]);
+        
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isMobileMenuOpen]);
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-orange-100 flex flex-col">
