@@ -77,9 +77,9 @@ export default function GoogleReviews() {
                                         <p className="text-xs text-gray-400 font-medium">{review.date}</p>
                                     </div>
                                     <img
-                                        src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Maps_icon_%282020%29.svg"
+                                        src="https://www.gstatic.com/images/branding/product/2x/maps_96dp.png"
                                         alt="Google"
-                                        className="ml-auto w-5 h-5 opacity-80"
+                                        className="ml-auto w-6 h-6 opacity-90"
                                     />
                                 </div>
                             </div>
