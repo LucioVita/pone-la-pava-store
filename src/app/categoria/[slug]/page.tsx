@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function getCategoryIcon(slug: string) {
     const lowerSlug = slug.toLowerCase();
-    if (lowerSlug.includes('termo')) return '/cat-termo.png';
+    if (lowerSlug.includes('termo') || lowerSlug.includes('botella')) return '/cat-termo.png';
     if (lowerSlug.includes('personalizado')) return '/cat-personalizado.png';
     if (lowerSlug.includes('mochila')) return '/cat-mochila.png';
     if (lowerSlug.includes('set')) return '/cat-set.png';

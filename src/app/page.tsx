@@ -175,6 +175,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
           {[
             { slug: "mates", icon: "/cat-mate.png", title: "Mates" },
             { slug: "termos", icon: "/cat-termo.png", title: "Termos" },
+            { slug: "botellas", icon: "/cat-termo.png", title: "Botellas" },
             { slug: "canastas-materas", icon: "/cat-kit.png", title: "Canastas materas" },
             { slug: "mochilas-materas", icon: "/cat-mochila.png", title: "Mochilas materas" },
             { slug: "sets-materos", icon: "/cat-set.png", title: "Sets materos" },

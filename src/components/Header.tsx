@@ -100,6 +100,7 @@ export default function Header() {
                                 {[
                                     { title: "Mates", slug: "mates" },
                                     { title: "Termos", slug: "termos" },
+                                    { title: "Botellas", slug: "botellas" },
                                     { title: "Línea Stanley", slug: "linea-stanley" },
                                     { title: "Latas Materas", slug: "latas-materas" },
                                     { title: "Canastas Materas", slug: "canastas-materas" },
@@ -227,6 +228,7 @@ export default function Header() {
                                     {[
                                         { title: "Mates", slug: "mates" },
                                         { title: "Termos", slug: "termos" },
+                                        { title: "Botellas", slug: "botellas" },
                                         { title: "Línea Stanley", slug: "linea-stanley" },
                                         { title: "Latas Materas", slug: "latas-materas" },
                                         { title: "Canastas Materas", slug: "canastas-materas" },
