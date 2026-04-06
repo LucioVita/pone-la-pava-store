@@ -33,7 +33,7 @@ function getCategoryIcon(slug: string) {
     if (lowerSlug.includes('mochila')) return '/cat-mochila.png';
     if (lowerSlug.includes('set')) return '/cat-set.png';
     if (lowerSlug.includes('mate') || lowerSlug.includes('imperial') || lowerSlug.includes('camionero') || lowerSlug.includes('algarrobo')) return '/cat-mate.png';
-    if (lowerSlug.includes('canasta') || lowerSlug.includes('bolso') || lowerSlug.includes('kit')) return '/cat-kit.png';
+    if (lowerSlug.includes('canasta') || lowerSlug.includes('bolso') || lowerSlug.includes('kit') || lowerSlug.includes('chau')) return '/cat-kit.png';
     return '/cat-mate.png'; // default fallback
 }
 
