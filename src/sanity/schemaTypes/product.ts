@@ -60,6 +60,12 @@ export const productType = defineType({
             rows: 4,
         }),
         defineField({
+            name: 'color',
+            title: 'Color del producto (Principal)',
+            type: 'string',
+            description: 'Nombre del color de la versión principal (Ej: Negro). Si este producto tiene variantes, este nombre aparecerá junto a ellas.'
+        }),
+        defineField({
             name: 'stock',
             title: 'Stock disponible',
             type: 'number',

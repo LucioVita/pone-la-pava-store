@@ -13,6 +13,7 @@ async function getProduct(slug: string) {
     gallery,
     description,
     stock,
+    color,
     variants[] {
       name,
       image,

@@ -19,6 +19,7 @@ interface ProductDetailProps {
         gallery?: any[];
         description: string;
         stock?: number;
+        color?: string;
         variants?: Array<{
             name: string;
             image: any;
@@ -52,7 +53,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         : (product.stock || 0);
 
     const handleAddToCart = () => {
-        const variantName = selectedVariant !== null ? product.variants?.[selectedVariant]?.name : null;
+        const variantName = selectedVariant !== null
+            ? product.variants?.[selectedVariant]?.name
+            : (product.variants && product.variants.length > 0 ? (product.color || 'Estándar') : null);
+
         addToCart({
             id: product._id + (variantName ? `-${variantName}` : ''),
             name: product.name + (variantName ? ` (${variantName})` : ''),
@@ -156,7 +160,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                                             : "border-orange-200 bg-white text-[#3d2b1f] hover:border-[#3d2b1f]"
                                         }`}
                                 >
-                                    Estándar
+                                    {product.color || "Estándar"}
                                 </button>
                             </div>
                         </div>
