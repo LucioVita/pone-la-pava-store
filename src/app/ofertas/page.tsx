@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     description: 'Aprovechá nuestros productos en oferta. Calidad premium al mejor precio en Pone La Pava.',
 };
 
+export const revalidate = 0; // Disable cache for this page to show offers immediately
+
 export default async function OffersPage() {
     // Fetch all products where isOnSale is true
     const products = await client.fetch(
