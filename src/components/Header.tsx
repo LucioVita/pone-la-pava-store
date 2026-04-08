@@ -91,6 +91,9 @@ export default function Header() {
                         <Link href="/" className="hover:text-orange-600 transition-colors whitespace-nowrap">
                             INICIO
                         </Link>
+                        <Link href="/ofertas" className="text-red-600 hover:text-red-700 transition-colors whitespace-nowrap font-black">
+                            OFERTAS
+                        </Link>
 
                         <div className="relative group py-6">
                             <button className="flex items-center gap-1 hover:text-orange-600 transition-colors uppercase cursor-pointer">
@@ -219,6 +222,14 @@ export default function Header() {
                                         className="flex items-center justify-between p-4 rounded-2xl bg-orange-50 text-orange-950 font-bold"
                                     >
                                         Inicio
+                                        <ChevronRight size={18} />
+                                    </Link>
+                                    <Link
+                                        href="/ofertas"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="flex items-center justify-between p-4 rounded-2xl bg-red-50 text-red-700 font-bold"
+                                    >
+                                        Ofertas 🔥
                                         <ChevronRight size={18} />
                                     </Link>
 

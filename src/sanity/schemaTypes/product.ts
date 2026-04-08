@@ -87,5 +87,19 @@ export const productType = defineType({
                 },
             ],
         }),
+        defineField({
+            name: 'isOnSale',
+            title: '¿Está en Oferta?',
+            type: 'boolean',
+            initialValue: false,
+        }),
+        defineField({
+            name: 'priceBefore',
+            title: 'Precio Anterior (Tachado)',
+            type: 'number',
+            description: 'Solo se muestra si el producto está en oferta.',
+            hidden: ({ document }) => !document?.isOnSale,
+            validation: (Rule) => Rule.min(0),
+        }),
     ],
 })

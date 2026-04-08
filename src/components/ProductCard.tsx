@@ -17,6 +17,8 @@ interface ProductCardProps {
         category: string;
         image: any;
         description: string;
+        isOnSale?: boolean;
+        priceBefore?: number;
     };
 }
 
@@ -58,6 +60,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                             className="object-cover transition-transform group-hover:scale-105"
                         />
                     )}
+                    {product.isOnSale && (
+                        <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black shadow-lg uppercase tracking-widest z-10">
+                            OFERTA
+                        </div>
+                    )}
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-orange-800 shadow-sm uppercase tracking-wider">
                         {product.category}
                     </div>
@@ -70,9 +77,16 @@ export default function ProductCard({ product }: ProductCardProps) {
                         {product.description}
                     </p>
                     <div className="flex items-center justify-between mt-auto">
+                    <div className="flex flex-col">
+                        {product.isOnSale && product.priceBefore && (
+                            <span className="text-sm text-gray-400 line-through font-bold">
+                                ${new Intl.NumberFormat('es-AR').format(product.priceBefore)}
+                            </span>
+                        )}
                         <span className="text-2xl font-black text-[#3d2b1f]">
                             ${new Intl.NumberFormat('es-AR').format(product.price)}
                         </span>
+                    </div>
                         <button
                             onClick={handleAddToCart}
                             className="bg-[#3d2b1f] text-white p-3 rounded-xl hover:bg-orange-600 transition-all shadow-sm group/btn"

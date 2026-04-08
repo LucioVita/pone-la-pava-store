@@ -17,6 +17,8 @@ async function getProducts(search?: string) {
     name,
     "slug": slug.current,
     price,
+    isOnSale,
+    priceBefore,
     "category": category->title,
     image,
     description
@@ -28,6 +30,8 @@ async function getProducts(search?: string) {
       name,
       "slug": slug.current,
       price,
+      isOnSale,
+      priceBefore,
       "category": category->title,
       image,
       description

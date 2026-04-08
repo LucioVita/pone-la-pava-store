@@ -25,6 +25,8 @@ interface ProductDetailProps {
             image: any;
             stock: number;
         }>;
+        isOnSale?: boolean;
+        priceBefore?: number;
     };
 }
 
@@ -122,15 +124,27 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         {product.name}
                     </h1>
 
-                    <div className="flex items-center gap-4 mb-6">
-                        <span className="text-3xl md:text-4xl font-black text-[#3d2b1f]">
-                            ${new Intl.NumberFormat('es-AR').format(product.price)}
-                        </span>
-                        <div className="h-6 w-px bg-orange-200"></div>
-                        <span className={`text-sm font-bold flex items-center gap-1 ${currentStock > 0 ? 'text-green-600' : 'text-red-500'}`}>
-                            <span className={`h-2 w-2 rounded-full animate-pulse ${currentStock > 0 ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                            {currentStock > 0 ? 'Stock disponible' : 'Sin stock'}
-                        </span>
+                    <div className="flex flex-col mb-6">
+                        {product.isOnSale && product.priceBefore && (
+                            <span className="text-lg text-gray-400 line-through font-bold">
+                                ${new Intl.NumberFormat('es-AR').format(product.priceBefore)}
+                            </span>
+                        )}
+                        <div className="flex items-center gap-4">
+                            <span className="text-3xl md:text-5xl font-black text-[#3d2b1f]">
+                                ${new Intl.NumberFormat('es-AR').format(product.price)}
+                            </span>
+                            {product.isOnSale && (
+                                <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+                                    OFERTA
+                                </span>
+                            )}
+                            <div className="h-6 w-px bg-orange-200"></div>
+                            <span className={`text-sm font-bold flex items-center gap-1 ${currentStock > 0 ? 'text-green-600' : 'text-red-500'}`}>
+                                <span className={`h-2 w-2 rounded-full animate-pulse ${currentStock > 0 ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                {currentStock > 0 ? 'Stock disponible' : 'Sin stock'}
+                            </span>
+                        </div>
                     </div>
 
                     {/* Variants Selection */}

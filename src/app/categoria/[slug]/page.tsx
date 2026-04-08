@@ -53,6 +53,8 @@ export default async function CategoryPage({ params }: Props) {
                 name,
                 "slug": slug.current,
                 price,
+                isOnSale,
+                priceBefore,
                 image,
                 description,
                 "category": category->title

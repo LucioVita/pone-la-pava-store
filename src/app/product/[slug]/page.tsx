@@ -8,6 +8,8 @@ async function getProduct(slug: string) {
     name,
     "slug": slug.current,
     price,
+    isOnSale,
+    priceBefore,
     "category": category->title,
     image,
     gallery,
