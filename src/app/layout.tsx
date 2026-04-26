@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ChatWidget from "@/components/ChatWidget";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import CartSidebar from "@/components/CartSidebar";
 import { CartProvider } from "@/context/CartContext";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/SEOJsonLd";
@@ -66,7 +66,7 @@ export default function RootLayout({
           {children}
           <FooterWrapper />
           <CartSidebar />
-          <ChatWidget />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>
