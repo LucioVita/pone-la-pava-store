@@ -57,51 +57,53 @@ export default function CheckoutPage() {
 
     const handleCheckout = async () => {
         setIsLoading(true);
+        
+        // Validación básica
+        if (!formData.firstName || !formData.lastName || !formData.phone || !formData.dni) {
+            alert("Por favor completá tus datos de contacto (Nombre, Apellido, DNI y WhatsApp).");
+            setIsLoading(false);
+            return;
+        }
+
+        if (shippingMethod === "delivery" && (!formData.province || !formData.city || !formData.address)) {
+            alert("Por favor completá los datos de envío.");
+            setIsLoading(false);
+            return;
+        }
+
         try {
-            const items = cart.map(item => ({
-                id: item.id,
-                title: item.name,
-                quantity: item.quantity,
-                unit_price: item.price,
-            }));
+            const phoneNumber = "5491157348764";
+            
+            const itemsList = cart.map(item => `- ${item.name} x${item.quantity} ($${new Intl.NumberFormat('es-AR').format(item.price * item.quantity)})`).join('\n');
+            
+            const shippingInfo = shippingMethod === "delivery" 
+                ? `\n*Envío a Domicilio*\n📍 Provincia: ${formData.province}\n🏙️ Ciudad: ${formData.city}\n🏠 Dirección: ${formData.address}\nCosto de envío: $${new Intl.NumberFormat('es-AR').format(currentShippingCost)}`
+                : `\n*Retiro en Local*\n📍 Punto de retiro: Pedernera 546, Villa Mercedes, San Luis`;
 
-            // Agregar el costo de envío como un item si es delivery
-            if (shippingMethod === "delivery") {
-                items.push({
-                    id: "shipping-cost",
-                    title: "Envío - Correo Argentino",
-                    quantity: 1,
-                    unit_price: currentShippingCost,
-                } as any);
-            }
+            const total = cartTotal + currentShippingCost;
 
-            const response = await fetch('/api/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    items,
-                    payer: {
-                        email: formData.email,
-                        firstName: formData.firstName,
-                        lastName: formData.lastName,
-                        phone: formData.phone,
-                        dni: formData.dni,
-                        province: formData.province,
-                        city: formData.city,
-                        address: formData.address,
-                        shippingMethod: shippingMethod,
-                    }
-                }),
-            });
+            const message = `¡Hola! 👋 Quisiera realizar el siguiente pedido:\n\n` +
+                            `*Productos:*\n${itemsList}\n\n` +
+                            `*Total:* $${new Intl.NumberFormat('es-AR').format(total)}\n` +
+                            `${shippingInfo}\n\n` +
+                            `*Datos del Cliente:*\n` +
+                            `👤 Nombre: ${formData.firstName} ${formData.lastName}\n` +
+                            `🆔 DNI: ${formData.dni}\n` +
+                            `📱 Teléfono: ${formData.phone}\n` +
+                            `📧 Email: ${formData.email}\n\n` +
+                            `Espero su confirmación para coordinar el pago. ¡Muchas gracias! 🧉`;
 
-            const data = await response.json();
-            if (data.init_point) {
-                window.location.href = data.init_point;
-            }
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Pequeño delay para feedback visual de "Procesando"
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                setIsLoading(false);
+            }, 800);
+
         } catch (error) {
-            console.error(error);
-            alert("Error al procesar el pago");
-        } finally {
+            console.error("WhatsApp error:", error);
+            alert("Ocurrió un error al intentar abrir WhatsApp.");
             setIsLoading(false);
         }
     };
@@ -136,7 +138,7 @@ export default function CheckoutPage() {
                             <div className="h-px w-8 bg-gray-200" />
                             <span className={step >= 2 ? "text-orange-600" : "text-gray-300"}>2. Envío</span>
                             <div className="h-px w-8 bg-gray-200" />
-                            <span className={step >= 3 ? "text-orange-600" : "text-gray-300"}>3. Pago</span>
+                            <span className={step >= 3 ? "text-orange-600" : "text-gray-300"}>3. Confirmación</span>
                         </div>
 
                         {/* Step 1: Personal Info */}
@@ -272,7 +274,7 @@ export default function CheckoutPage() {
                             disabled={isLoading}
                             className="w-full py-5 bg-[#3d2b1f] text-white rounded-[2rem] font-black text-xl shadow-2xl shadow-orange-900/20 hover:bg-[#5c4033] transition-all flex items-center justify-center gap-3 group disabled:opacity-70"
                         >
-                            {isLoading ? "Procesando..." : "Proceder al Pago"}
+                            {isLoading ? "Procesando..." : "Finalizar Pedido por WhatsApp"}
                             {!isLoading && <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />}
                         </button>
                     </div>
